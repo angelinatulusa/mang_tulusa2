@@ -6,5 +6,17 @@ using System.Text;
 tegelane.info();*/
 UTF8Encoding utf8 = new UTF8Encoding();
 
-
+try
+{
+    Console.WriteLine("Tere!");
+    Peaklass.Uus_mang(19);
+}
+catch (ArgumentOutOfRangeException)
+{
+    Console.WriteLine("Fail esemed.txt ei ole täidetud!");
+}
+catch (FileNotFoundException)
+{
+    Console.WriteLine("fail esemed.txt ei ole loodud");
+}
 

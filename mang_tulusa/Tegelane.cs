@@ -10,8 +10,7 @@ namespace mang_tulusa
     internal class Tegelane : /*IUksis,*/ IComparable<Tegelane>
     {
         private string nimi;
-        List<Ese> esed;
-        int esemed;
+        private List<Ese> esed = new List<Ese>();
 
         public Tegelane(string nimi)
         {
@@ -25,22 +24,22 @@ namespace mang_tulusa
             int sum=0;
             
             foreach (Ese asi in esed) { sum += asi.punktideArv(); }
-            esemed += 1; //подсчет кол-ва предметов у персонажа
             return sum;
         }
         public string info() 
         {
             string tegelase_info;
-            tegelase_info= $"See on {nimi} tal on {esemed}esemed ja {PunktideArv()}punkti";
+            tegelase_info= $"See on {nimi} tal on {PunktideArv()}punkti \n";
             return tegelase_info;
         }
         public void valjastaEsemed()
         {
+            Console.WriteLine("Esemed: ");
             foreach (var asi in esed)
             {
-                Console.WriteLine(asi.Info());
+                asi.Info();
             }
-
+            Console.WriteLine();
         }
 
 
@@ -55,5 +54,7 @@ namespace mang_tulusa
 
         }
         private int EsesKogus() { return this.esed.Count; }
+
+        internal void lisaEse(Ese ese) { esed.Add(ese); }
     }
 }

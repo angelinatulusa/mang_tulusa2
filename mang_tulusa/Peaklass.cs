@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace mang_tulusa
 {
-    internal class Peaklass
+    static class Peaklass
     {
         public static Random rnd = new Random();
         public static List<Ese> LoeEsemed()
@@ -39,7 +39,7 @@ namespace mang_tulusa
             }
             List<Ese> esed = LoeEsemed();
             if (esed.Count <= 0) throw new ArgumentOutOfRangeException();
-            /*foreach (Tegelane m in mangijad)
+            foreach (Tegelane m in mangijad)
             {
                 Shuffle(esed);
                 int esedekogus = rnd.Next(2, 10);
@@ -47,12 +47,36 @@ namespace mang_tulusa
                 {
                     m.lisaEse(esed[i]);
                 }
-            }*/
-        }
+            }
+            return mangijad;
 
-        private static void Shuffle(List<Ese> esed)
-        {
-            throw new NotImplementedException();
         }
+        public static void Shuffle<T>(this IList<T> list)
+        {
+            int n = list.Count;
+            while (n > 1)
+            {
+                n--;
+                int k = rnd.Next(n + 1);
+                T value = list[k];
+                list[k] = list[n];
+                list[n] = value;
+            }
+        }
+        static public void Uus_mang(int kogus)
+        {
+            Tegelane[] mangijad = Mangijad(kogus);
+            Mang mang = new Mang(mangijad);
+            foreach (Tegelane item in mang.SuurimaEsemeteArvuga())
+            {
+                Console.WriteLine(item.info());
+            }
+            Tegelane voitja=mang.suurimaPunktideArvuga();
+            Console.WriteLine("Votja: ");
+            Console.WriteLine(voitja.info());
+            Console.WriteLine("Mingijal olid järgmesed esed: ");
+            voitja.valjastaEsemed();
+        }
+        
     }
 }

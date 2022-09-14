@@ -47,7 +47,7 @@ namespace mang_tulusa
             votjad.Add(sorted);
             return votjad;
         }
-        public Tegelane suurimaEsemeteArvuga()
+        public Tegelane suurimaPunktideArvuga()
         {
             int parim = 0;
             Tegelane voitja = tegelased[0];
