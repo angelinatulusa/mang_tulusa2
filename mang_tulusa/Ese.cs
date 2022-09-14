@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace mang_tulusa
 {
-    class Ese : Uksis
+    class Ese : IUksis
     {
-        public string nimetus;
-        public int punktide_arv;
+        private string nimetus;
+        private int punktide_arv;
 
         public Ese() { }
 
@@ -18,15 +18,12 @@ namespace mang_tulusa
             this.nimetus = nimetus;
             this.punktide_arv = punktide_arv;
         }
-        public int  punktideArv()
-        {
+        public int punktideArv() { return punktide_arv; }
 
-            return punktide_arv;
-        }
-
-        public string  Info()
+        public string Info() 
         {
-            return nimetus;
+            Console.WriteLine(nimetus);
+            return nimetus; 
         }
 
         

@@ -7,53 +7,53 @@ using System.Threading.Tasks;
 
 namespace mang_tulusa
 {
-    internal class Tegelane : IComparable<Tegelane>
+    internal class Tegelane : /*IUksis,*/ IComparable<Tegelane>
     {
         private string nimi;
-        List<Ese> tegelane;
+        List<Ese> esed;
         int esemed;
 
         public Tegelane(string nimi)
         {
             this.nimi = nimi;
-            tegelane = new List<Ese>();
+            //esed = new List<Ese>();
         }
 
-        public void lisaEse(Ese asi)
-        {
-            tegelane.Add(asi);
-
-        }
+        public int lisaEse(int arv) { return arv; }
         public int PunktideArv()
         {
             int sum=0;
             
-            foreach (Ese asi in tegelane) { sum += asi.punktideArv(); }
+            foreach (Ese asi in esed) { sum += asi.punktideArv(); }
             esemed += 1; //подсчет кол-ва предметов у персонажа
             return sum;
         }
-        /*public void info() //работает, выводит информацию, но по заданию нужно возвращать информацию, поэтому не подходит
+        public string info() 
         {
-            Console.WriteLine($"See on {nimi} tal on {esemed}esemed ja {PunktideArv()}punkti");
-        }*/
-        public string info() //ничего не выводит на экран
-        {
-            return $"See on {nimi} tal on {esemed}esemed ja {PunktideArv()}punkti";
+            string tegelase_info;
+            tegelase_info= $"See on {nimi} tal on {esemed}esemed ja {PunktideArv()}punkti";
+            return tegelase_info;
         }
         public void valjastaEsemed()
         {
-            foreach (var asi in tegelane)
+            foreach (var asi in esed)
             {
-                Console.WriteLine(asi.nimetus + "\n");
+                Console.WriteLine(asi.Info());
             }
 
         }
 
 
 
-        public int CompareTo(Tegelane? other)
+        public int CompareTo(Tegelane? muu)
         {
-            throw new NotImplementedException();
+            if (muu==null)
+            {
+                return 1;
+            }
+            return this.esed.Count - muu.EsesKogus();
+
         }
+        private int EsesKogus() { return this.esed.Count; }
     }
 }
